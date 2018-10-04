@@ -71,9 +71,8 @@ namespace :spec do
   #this.
   spec_tasks = []
   gemspecs.each do |gemspec|
-    #test_files = gemspec.test_files
-    #test_files.keep_if { |file| file =~ /_spec\.rb$/ }
-    test_files = ['spec/00_nmatrix_spec.rb']
+    test_files = gemspec.test_files
+    test_files.keep_if { |file| file =~ /_spec\.rb$/ }
     test_files -= ['spec/nmatrix_yale_spec.rb', 'spec/blas_spec.rb', 'spec/lapack_core_spec.rb'] if /java/ === RUBY_PLATFORM
     next if test_files.empty?
     spec_tasks << gemspec.name
