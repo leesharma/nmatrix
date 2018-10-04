@@ -42,6 +42,7 @@ describe "Statistical functions" do
 
         it "should calculate the mean along the specified dimension" do
           pending("not yet implemented for NMatrix-JRuby") if jruby?
+          pending("not yet working for ruby mri >= 2.5 (see SciRuby/packable#4)") if !jruby? && Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.5")
           unless stype == :yale then
             puts nm_1d.mean
             expect(nm_1d.mean).to eq NMatrix.new([1], [2.2], stype: stype, dtype: :float64)

@@ -269,6 +269,8 @@ describe NMatrix do
     end
 
     it "calculates the row key intersections of two matrices" do
+      pending("not yet working for ruby mri >= 2.5 (see SciRuby/packable#4)") if !jruby? && Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.5")
+
       a = NMatrix.new([3,9], [0,1], stype: :yale, dtype: :byte, default: 0)
       b = NMatrix.new([3,9], [0,0,1,0,1], stype: :yale, dtype: :byte, default: 0)
       a.extend NMatrix::YaleFunctions

@@ -292,6 +292,8 @@ describe NMatrix do
 
           it "allows storage-based iteration of matrices" do
             pending("not yet implemented for sparse matrices for NMatrix-JRuby") if jruby? and storage_type != :dense
+            pending("not yet working for ruby mri >= 2.5 (see SciRuby/packable#4)") if !jruby? && Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.5")
+
             STDERR.puts storage_type.inspect
             STDERR.puts dtype.inspect
             n = NMatrix.new([3,3], 0, stype: storage_type, dtype: dtype)

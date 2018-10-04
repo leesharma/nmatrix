@@ -52,6 +52,8 @@ describe NMatrix::IO do
 
   it "reads MATLAB .mat file containing a single square sparse matrix" do
     pending("not yet implemented for NMatrix-JRuby") if jruby?
+    pending("not yet working for ruby mri >= 2.5 (see SciRuby/packable#4)") if !jruby? && Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.5')
+
     n = NMatrix::IO::Matlab.load_mat("spec/4x4_sparse.mat")
     expect(n[0,0]).to eq(2)
     expect(n[1,1]).to eq(3)
